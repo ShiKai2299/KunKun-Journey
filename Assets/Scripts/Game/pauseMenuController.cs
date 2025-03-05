@@ -7,6 +7,7 @@ public class pauseMenuController : MonoBehaviour
     public GameObject pauseMenu;
     public GameWindow gameWindow;
     public Animator transitionAnim;
+    public AudioSource bgmAudioSource;
 
     public void Pause() 
     {
@@ -28,6 +29,7 @@ public class pauseMenuController : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
+        bgmAudioSource.UnPause(); // Resume BGM from where it was paused
     }
 
     public void Restart()

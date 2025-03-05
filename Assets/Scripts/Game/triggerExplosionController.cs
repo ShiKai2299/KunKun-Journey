@@ -8,6 +8,7 @@ public class triggerExplosionController : MonoBehaviour
     public GameObject explosion;
     public Tilemap tilemap;
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground"))
@@ -16,14 +17,18 @@ public class triggerExplosionController : MonoBehaviour
 
             GameObject e = Instantiate(explosion, hitPosition, Quaternion.identity);
 
+
             if (tilemap != null)
             {
                 tilemap.gameObject.SetActive(false);
+
+
             }
 
             gameObject.SetActive(false);
             Destroy(gameObject, 0.1f);
             Destroy(e, 0.6f);
+
         }
     }
 }

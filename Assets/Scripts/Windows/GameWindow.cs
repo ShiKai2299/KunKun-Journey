@@ -8,6 +8,7 @@ public class GameWindow : WindowRoot
     public GameObject[] levels;
     public GameObject gameOverTip; 
     public pauseMenuController pauseMenu;
+    public AudioSource bgmAudioSource;
 
     private GameObject keyIconPlay;
     private GameObject keyIconExit;
@@ -67,6 +68,7 @@ public class GameWindow : WindowRoot
         Time.timeScale = 0;
         player.SetActive(false);
         gameOverTip.SetActive(true);  // Show GameOver Tip
+        bgmAudioSource.Pause(); // Pause the BGM
     }
 
     public void loadLevel()
@@ -87,6 +89,7 @@ public class GameWindow : WindowRoot
         if (start != null)
         {
             player.transform.localPosition = start.localPosition;
+            bgmAudioSource.UnPause(); // Resume BGM from where it was paused
         }
     }
 
@@ -102,10 +105,12 @@ public class GameWindow : WindowRoot
             if (pauseMenu.gameObject.activeSelf)
             {
                 pauseMenu.Resume();
+                bgmAudioSource.UnPause();
             }
             else
             {
                 pauseMenu.Pause();
+                bgmAudioSource.Pause(); // Pause the BGM
             }
         }
 

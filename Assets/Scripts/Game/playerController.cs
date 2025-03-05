@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
+    //AudioSource 
+    AudioSource[] audioSources;
+
     // Movement
     // Player movement speed
     public float movementSpeed;
@@ -110,6 +113,8 @@ public class playerController : MonoBehaviour
         // Jump: If press "Space"
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount > 0)
         {
+            audioSources = GetComponents<AudioSource>();
+            audioSources[1].Play();
             if (jumpCount == 2)
             {
                 // Perform the first jump
@@ -181,6 +186,8 @@ public class playerController : MonoBehaviour
                 dashTimer = dashTime;
                 canDash = false; // Disable further dashes until grounded
                 playerAnimator.SetBool("isDashing", true);
+                audioSources = GetComponents<AudioSource>();
+                audioSources[0].Play();
             }
         }
     }
